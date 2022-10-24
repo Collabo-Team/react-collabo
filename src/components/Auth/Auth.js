@@ -1,24 +1,22 @@
 import React, { useState, useRef } from 'react';
-import { useParams, Link as RouterLink, Redirect } from 'react-router-dom';
+import { Redirect, Link, useParams } from 'react-router-dom';
 import { authUser } from '../../services/auth';
 import { useUserContext } from '../../context/UserContext';
 
-const Auth = () => {
+export default function Auth() {
 
   const { type: authMethod } = useParams();
 
   const { user, setUser } = useUserContext();
 
-  // https://reactjs.org/docs/hooks-reference.html#useref
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
-
   const [emailInvalid, setEmailInvalid] = useState(false);
   const [passwordInvalid, setPasswordInvalid] = useState(false);
+
   const [error, setError] = useState();
 
-  //check the validity of the current sign-in attempt
-  const validUser = () => {
+  const isFormValid = () => {
     let invalid = false;
     setEmailInvalid(false);
     setPasswordInvalid(false);
@@ -34,9 +32,9 @@ const Auth = () => {
     return invalid;
   };
 
-  //submit the form for validation
   const handleSubmit = async () => {
-    if (validUser()) return;
+    if (isFormValid()) return;
+
     const email = emailInputRef.current.value;
     const password = passwordInputRef.current.value;
     try {
@@ -52,7 +50,7 @@ const Auth = () => {
     }
   };
 
-  const displayAuthMethod = authMethod === 'sign-in' ? 'Sign In' : 'Sign Up';
+  const presentableAuthMethod = authMethod === 'sign-in' ? 'Sign Sign In' : 'Sign Up';
 
   if (user) return <Redirect to="/" />;
 
@@ -60,53 +58,59 @@ const Auth = () => {
     <>
       <h1>COLLABO</h1>
       <div>
-        { `Please ${displayAuthMethod.toLowerCase()} to continue.` }
+        { `Please ${presentableAuthMethod.toLocaleLowerCase()} to continue.` }
       </div>
-      <div style={ { visibility: error ? 'visible' : 'hidden' } }>
+      <div style={ { visibility: error ? 'visible' : 'hidden', color: 'red' } }>
         {
           String(error)
         }
       </div>
-      <form noValidate>
-        <label>
-          Email
-          <input placeholder="name@example.com" ref={ emailInputRef } type="email" onKeyUp={
-            (e) => (e.key === 'Enter' && handleSubmit())
-          } />
-        </label>
-        {
-          emailInvalid ?
-            (<p>Please enter a valid email address.</p>) :
-            (<p style={ { visibility: 'hidden' } }>&nbsp;</p>)
-        }
-        <label>
+      <form>
+
+        <lable>Email
+          <input
+            placeholder="name@example.com"
+            ref={ emailInputRef }
+            type="email"
+            onKeyUp={ (e) => e.key === 'Enter' && handleSubmit() }
+          />
+        </lable>
+        { emailInvalid ? (
+          <p>Please enter a valid email address.</p>
+        ) : (
+          <p visibility="hidden">&nbsp;</p>
+        ) }
+
+        <lable>
           Password
-          <input placeholder="•••••••••" ref={ passwordInputRef } type="password" onKeyUp={
-            (e) => e.key === 'Enter' && handleSubmit() } />
-        </label>
+          <input
+            placeholder="•••••••••"
+            ref={ passwordInputRef }
+            type="password"
+            onKeyUp={(e) => e.key === 'Enter' && handleSubmit() } />
+        </lable>
         {
           passwordInvalid ?
             (<p>Password is required.</p>) :
             (<p visibility="hidden">&nbsp;</p>)
         }
+       
+        <button onClick={ handleSubmit }>{ presentableAuthMethod }</button>
+        {
+          authMethod === 'sign-in' ?
+            (
+              <Link to="/auth/sign-up">
+                Need to create an account? Sign Up.
+              </Link>
+            )
+            :
+            (
+              <Link to="/auth/sign-in">
+                Already have an account? Sign In.
+              </Link>
+            )
+        }
       </form>
-      <button onClick={ handleSubmit }>{ displayAuthMethod }</button>
-      {
-        authMethod === 'sign-in' ?
-          (
-            <RouterLink to="/auth/sign-up">
-          Need to create an account? Sign Up.
-            </RouterLink>
-          )
-          :
-          (
-            <RouterLink to="/auth/sign-in">
-          Already have an account? Sign In.
-            </RouterLink>
-          )
-      }
     </>
   );
-};
-
-export default Auth;
+}
