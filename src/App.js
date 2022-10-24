@@ -5,10 +5,12 @@ import Auth from './components/Auth/Auth';
 import UserProfile from './components/UserProfile/UserProfile';
 import StartProject from './components/StartProject/StartProject';
 import Home from './components/Home/Home';
+import NavBar from './components/NavBar/NavBar';
 
 function App() {
   return (
     <div className="App">
+      <NavBar />
       <Switch>
         <Route path="/about" component={About} />
         <Route path="/auth" component={Auth} />
