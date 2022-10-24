@@ -1,0 +1,17 @@
+.project {
+    height: 240px;
+    width: 240px;
+    background: linear-gradient(45deg, rgba(183, 227, 180, 1) 0%, rgba(86, 149, 137, 1) 66%);
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 8px 8px 8px -8px rgb(0 0 0 / 50%);
+    border-radius: 0.4em;
+    padding: 0.05em;
+    color: black;
+    transition: all 0.4s ease;
+}
+.project:hover {
+    opacity: 85%;
+}
