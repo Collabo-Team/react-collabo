@@ -67,7 +67,7 @@ const Auth = () => {
           String(error)
         }
       </div>
-      <form noValidate onSubmit={ handleSubmit }>
+      <form noValidate>
         <label>
           Email
           <input placeholder="name@example.com" ref={ emailInputRef } type="email" onKeyUp={
@@ -91,15 +91,20 @@ const Auth = () => {
         }
       </form>
       <button onClick={ handleSubmit }>{ displayAuthMethod }</button>
-      { authMethod === 'sign-in' ? (
-        <RouterLink to="/auth/sign-up">
+      {
+        authMethod === 'sign-in' ?
+          (
+            <RouterLink to="/auth/sign-up">
           Need to create an account? Sign Up.
-        </RouterLink>
-      ) : (
-        <RouterLink to="/auth/sign-in">
+            </RouterLink>
+          )
+          :
+          (
+            <RouterLink to="/auth/sign-in">
           Already have an account? Sign In.
-        </RouterLink>
-      ) }
+            </RouterLink>
+          )
+      }
     </>
   );
 };
