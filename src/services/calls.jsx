@@ -48,9 +48,9 @@ export function updateTrackInRealtime(handleInsert, playlist, project_id) {
 }
 
 export async function getProject(id) {
-    // from the roster table, select a single player who has the matching id
+  // from the roster table, select a single player who has the matching id
   const response = await client.from('projects').select('*, tracks(*)').match({ id }).single();
-    // and return the response
+  // and return the response
   if (response.error) {
     throw new Error(response.error.message);
   }
@@ -64,12 +64,20 @@ export async function getProjects() {
 
 // PROFILE FETCH FNS
 
-// export async function createProfile(profile) {
-//     return await client.from('profiles').insert(profile).single();
-// }
+export async function createProfile(profile) {
+  return await client.from('profiles').insert(profile).single();
+}
+
+export async function getProfileById(id) {
+  const response = await client.from('profiles').select('*').match({ id }).single();
+  if (response.error) {
+    throw new Error(response.error.message);
+  }
+  return response.data;
+}
 
 export async function updateProfile(profile) {
-  return await client.from('profiles').insert(profile).single();
+  return await client.from('profiles_og').upsert(profile).single();
 }
 
 export async function uploadProfilePhoto(bucketName, fileName, imageFile) {
