@@ -16,6 +16,9 @@ export async function authUser(email, password, type) {
   return response.user;
 }
 
+export async function signOut() {
+  await client.auth.signOut();
+}
 
 // Original Collabo auth form below
 

@@ -13,10 +13,10 @@ function App() {
       <NavBar />
       <Switch>
         <Route path="/about" component={About} />
-        <Route path="/auth" component={Auth} />
+        <Route path="/auth/:type" component={Auth} />
         <Route path="/user-profile/:id" component={UserProfile} />
         <Route path="/start-project/:id" component={StartProject} />
-        <Route path="/" component={Home} />
+        <Route exact path="/" component={Home} />
       </Switch>
     </div>
   );
