@@ -84,7 +84,7 @@ export default function ProjectDetail() {
   //   genre.textContent = project.genre;
   //   tempo.textContent = `${project.tempo} bpm`;
   //   timeSignature.textContent = project.time_signature;
-  //   key.textContent = project.key;
+  //   key.textContent = project.musical_key;
 
   //   metadataDiv.append(genre, tempo, timeSignature, key);
   //   div.append(h2, metadataDiv);
