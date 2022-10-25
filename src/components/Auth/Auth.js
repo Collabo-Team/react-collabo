@@ -1,19 +1,19 @@
+/* eslint-disable no-console */
 import React, { useState, useRef } from 'react';
 import { Redirect, Link, useParams } from 'react-router-dom';
 import { authUser } from '../../services/auth';
 import { useUserContext } from '../../context/UserContext';
 
 export default function Auth() {
-
   const { type: authMethod } = useParams();
 
   const { user, setUser } = useUserContext();
 
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
+
   const [emailInvalid, setEmailInvalid] = useState(false);
   const [passwordInvalid, setPasswordInvalid] = useState(false);
-
   const [error, setError] = useState();
 
   const isFormValid = () => {
@@ -21,7 +21,8 @@ export default function Auth() {
     setEmailInvalid(false);
     setPasswordInvalid(false);
 
-    if (emailInputRef.current.value === '' || !emailInputRef.current.checkValidity()) {
+    if (emailInputRef.current.value === '' ||
+      !emailInputRef.current.checkValidity()) {
       setEmailInvalid(true);
       invalid = true;
     }
@@ -37,10 +38,11 @@ export default function Auth() {
 
     const email = emailInputRef.current.value;
     const password = passwordInputRef.current.value;
+
     try {
       const userResponse = await authUser(email, password, authMethod);
       setUser(userResponse);
-
+      <Redirect to={ '/' } />;
     } catch (error) {
       if (error.message) {
         setError(error.message);
@@ -49,12 +51,11 @@ export default function Auth() {
         console.error(error);
       }
     }
-    <Redirect to="/" />;
   };
 
   const presentableAuthMethod = authMethod === 'sign-in' ? 'Sign In' : 'Sign Up';
 
-  if (user) return <Redirect to="/" />;
+  if (user) return <Redirect to={ '/' } />;
 
   return (
     <>
@@ -62,7 +63,7 @@ export default function Auth() {
       <div>
         { `Please ${presentableAuthMethod.toLocaleLowerCase()} to continue.` }
       </div>
-      <div style={ { visibility: error ? 'visible' : 'hidden', color: 'red' } }>
+      <div style={ { visibility: error ? 'visible' : 'hidden' } }>
         {
           String(error)
         }
@@ -88,15 +89,13 @@ export default function Auth() {
             placeholder="•••••••••"
             ref={ passwordInputRef }
             type="password"
-            onKeyUp={(e) => e.key === 'Enter' && handleSubmit() } />
+            onKeyUp={ (e) => e.key === 'Enter' && handleSubmit() } />
         </label>
         {
           passwordInvalid ?
             (<p>Password is required.</p>) :
             (<p visibility="hidden">&nbsp;</p>)
         }
-
-
         <button onClick={ handleSubmit }>{ presentableAuthMethod }</button>
         {
           authMethod === 'sign-in' ?
