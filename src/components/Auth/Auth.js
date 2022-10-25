@@ -40,6 +40,7 @@ export default function Auth() {
     try {
       const userResponse = await authUser(email, password, authMethod);
       setUser(userResponse);
+      <Redirect to="/" />;
     } catch (error) {
       if (error.message) {
         setError(error.message);
@@ -50,7 +51,7 @@ export default function Auth() {
     }
   };
 
-  const presentableAuthMethod = authMethod === 'sign-in' ? 'Sign Sign In' : 'Sign Up';
+  const presentableAuthMethod = authMethod === 'sign-in' ? 'Sign In' : 'Sign Up';
 
   if (user) return <Redirect to="/" />;
 
@@ -66,35 +67,33 @@ export default function Auth() {
         }
       </div>
       <form>
-
-        <lable>Email
+        <label>Email
           <input
             placeholder="name@example.com"
             ref={ emailInputRef }
             type="email"
             onKeyUp={ (e) => e.key === 'Enter' && handleSubmit() }
           />
-        </lable>
+        </label>
         { emailInvalid ? (
           <p>Please enter a valid email address.</p>
         ) : (
           <p visibility="hidden">&nbsp;</p>
         ) }
-
-        <lable>
+        <label>
           Password
           <input
             placeholder="•••••••••"
             ref={ passwordInputRef }
             type="password"
             onKeyUp={(e) => e.key === 'Enter' && handleSubmit() } />
-        </lable>
+        </label>
         {
           passwordInvalid ?
             (<p>Password is required.</p>) :
             (<p visibility="hidden">&nbsp;</p>)
         }
-       
+
         <button onClick={ handleSubmit }>{ presentableAuthMethod }</button>
         {
           authMethod === 'sign-in' ?
