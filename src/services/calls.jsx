@@ -77,7 +77,7 @@ export async function getProfileById(id) {
 }
 
 export async function updateProfile(profile) {
-  return await client.from('profiles').insert(profile).single();
+  return await client.from('profiles_og').upsert(profile).single();
 }
 
 export async function uploadProfilePhoto(bucketName, fileName, imageFile) {

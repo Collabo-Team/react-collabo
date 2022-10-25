@@ -19,7 +19,16 @@ export default function UserProfile() {
 
   const updateHandler = async (e) => {
     e.preventDefault();
-    await updateProfile(username, firstName, lastName, email, bio, city, projects);
+    await updateProfile({
+      user_name: username,
+      first_name: firstName,
+      last_name: lastName,
+      email: email,
+      bio: bio,
+      city: city,
+      extra: user.id,
+      // projects: projects,
+    });
     await uploadProfilePhoto();
   };
 
