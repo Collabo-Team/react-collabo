@@ -1,5 +1,4 @@
 import { NavLink } from 'react-router-dom';
-import { signOut } from '../../services/auth';
 
 import './NavBar.css';
 
@@ -18,10 +17,7 @@ export default function NavBar() {
             About
           </NavLink>
           <NavLink to="/user-profile/:id" className="nav-link">
-            Profile
-          </NavLink>
-          <NavLink id="sign-out-link" to="/auth" className="nav-link" onClick={ signOut() }>
-            Sign Out
+            <img src={process.env.PUBLIC_URL + '/avatar-placeholder-circle.png'} className="nav-avatar" />
           </NavLink>
         </div>
       </nav>

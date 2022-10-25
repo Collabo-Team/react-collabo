@@ -19,6 +19,7 @@ nav a {
 
 .nav-link {
     margin-left: 32px;
+    padding: 10px;
     font-size: 1em;
 }
 
@@ -31,4 +32,8 @@ nav a {
     color: white;
     background: rgb(183, 227, 180);
     background: linear-gradient(45deg, rgba(183, 227, 180, 1) 0%, rgba(86, 149, 137, 1) 66%);
+}
+
+.nav-avatar {
+    height: 25px;
 }
