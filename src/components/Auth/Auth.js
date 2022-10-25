@@ -40,7 +40,7 @@ export default function Auth() {
     try {
       const userResponse = await authUser(email, password, authMethod);
       setUser(userResponse);
-      <Redirect to="/" />;
+
     } catch (error) {
       if (error.message) {
         setError(error.message);
@@ -49,6 +49,7 @@ export default function Auth() {
         console.error(error);
       }
     }
+    <Redirect to="/" />;
   };
 
   const presentableAuthMethod = authMethod === 'sign-in' ? 'Sign In' : 'Sign Up';
@@ -67,7 +68,8 @@ export default function Auth() {
         }
       </div>
       <form>
-        <label>Email
+        <label>
+          Email
           <input
             placeholder="name@example.com"
             ref={ emailInputRef }
@@ -93,6 +95,7 @@ export default function Auth() {
             (<p>Password is required.</p>) :
             (<p visibility="hidden">&nbsp;</p>)
         }
+
 
         <button onClick={ handleSubmit }>{ presentableAuthMethod }</button>
         {
