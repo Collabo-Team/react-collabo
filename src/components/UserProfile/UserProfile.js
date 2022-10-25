@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { UserContext, useUserContext } from '../../context/UserContext';
 import { authUser, getUser } from '../../services/auth';
 import { updateProfile, uploadProfilePhoto } from '../../services/calls';
@@ -7,7 +7,6 @@ import './UserProfile.css';
 export default function UserProfile() {
   const user = authUser();
   // const { user } = useContext(UserContext);
-  const [avatar, setAvatar] = useState(null);
   const [username, setUsername] = useState('');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -15,7 +14,9 @@ export default function UserProfile() {
   const [bio, setBio] = useState('');
   const [city, setCity] = useState('');
   const [projects, setProjects] = useState('');
-  const [avatarUrl, setAvatarUrl] = useState('');
+
+  // const [avatar, setAvatar] = useState([]);
+  // const [avatarUrl, setAvatarUrl] = useState('');
 
   const updateHandler = async (e) => {
     e.preventDefault();
@@ -25,12 +26,37 @@ export default function UserProfile() {
       last_name: lastName,
       email: email,
       bio: bio,
-      city: city,
+      location: city,
       extra: user.id,
+      image_file: imageSrc,
       // projects: projects,
     });
-    await uploadProfilePhoto();
+    // await uploadAvatar();
   };
+
+  //! we need to:
+  //*   - send image URLs to image_file column of profiles table
+  //*   - send image URLs to files-bucket
+
+  const [images, setImages] = useState([]);
+  const [imageURLs, setImageURLs] = useState([]);
+
+  useEffect(() => {
+    // const imageSrc = imageURLs.map((image) => image.imageSrc);
+
+    if (images.length < 1) return;
+    const newImageURLs = [];
+    images.forEach((image) => newImageURLs.push(URL.createObjectURL(image)));
+    setImageURLs(newImageURLs);
+  }, [images]);
+
+  function onImageChange(e) {
+    setImages([...e.target.files]);
+  }
+  const imageSrc = imageURLs.join('');
+  console.log(imageSrc);
+
+  console.log(imageURLs);
 
   return (
     <>
@@ -38,16 +64,17 @@ export default function UserProfile() {
         <h3>User Profile</h3>
         <form onSubmit={updateHandler} className="profile-form">
           <h3>User{user.email}&apos;s profile</h3>
-          <div className="avatar-container" value={avatar}>
-            {avatar}
-          </div>
           <label htmlFor="avatar">upload avatar</label>
           <input
-            name="avatar"
+            id="avatar-input"
+            name="avatar-input"
             type="file"
-            accept={'image/jpeg image/png'}
-            onChange={(e) => setAvatar(e.target.files[0])}
+            accept={'image/*'}
+            onChange={onImageChange}
           />
+          <div className="avatar-container">
+            <img key={imageSrc} src={imageSrc} />
+          </div>
           <label htmlFor="username">username</label>
           <input
             value={username}
@@ -104,3 +131,22 @@ export default function UserProfile() {
     </>
   );
 }
+
+// export async function uploadAvatar(bucketName, audioName, audioFile) {
+//   const bucket = client.storage.from(bucketName);
+
+//   const response = await bucket.upload(audioName, audioFile, {
+//     cacheControl: '3600',
+
+//     upsert: true,
+//   });
+
+//   if (response.error) {
+//     console.log(response.error);
+//     return null;
+//   }
+
+//   const url = `${SUPABASE_URL}/storage/v1/object/public/${response.data.Key}`;
+
+//   return url;
+// }
