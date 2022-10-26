@@ -65,11 +65,11 @@ export async function getProjects() {
 // PROFILE FETCH FNS
 
 export async function createProfile(profile) {
-  return await client.from('profiles').insert(profile).single();
+  return await client.from('profiles_og').insert(profile).single();
 }
 
 export async function getProfileById(id) {
-  const response = await client.from('profiles').select('*').match({ id }).single();
+  const response = await client.from('profiles_og').select('*').match({ id }).single();
   if (response.error) {
     throw new Error(response.error.message);
   }
@@ -80,7 +80,7 @@ export async function updateProfile(profile) {
   return await client.from('profiles_og').upsert(profile).single();
 }
 
-export async function uploadProfilePhoto(bucketName, fileName, imageFile) {
+export async function uploadProfileImage(bucketName, fileName, imageFile) {
   const bucket = client.storage.from(bucketName);
 
   const response = await bucket.upload(fileName, imageFile, {
@@ -96,6 +96,10 @@ export async function uploadProfilePhoto(bucketName, fileName, imageFile) {
   }
 
   const url = `${process.env.REACT_APP_SUPABASE_URL}/storage/v1/object/public/${response.data.Key}`;
-
+  console.log('from calls response: ', response);
+  console.log('from calls url: ', url);
+  console.log('from calls fileName: ', fileName);
+  console.log('from calls imageFile: ', imageFile);
+  console.log('from calls bucketName: ', bucketName);
   return url;
 }
