@@ -80,13 +80,13 @@ export async function updateProfile(profile) {
   return await client.from('profiles_og').upsert(profile).single();
 }
 
-export async function uploadProfileImage(bucketName, fileName, imageFile) {
-  const bucket = client.storage.from(bucketName);
+export async function uploadProfileImage(imagePath, imageFile) {
+  const bucket = client.storage.from('avatars');
 
-  const response = await bucket.upload(fileName, imageFile, {
+  const response = await bucket.upload(imagePath, imageFile, {
     cacheControl: '3600',
 
-    upsert: true,
+    upsert: false,
   });
 
   if (response.error) {
@@ -96,10 +96,6 @@ export async function uploadProfileImage(bucketName, fileName, imageFile) {
   }
 
   const url = `${process.env.REACT_APP_SUPABASE_URL}/storage/v1/object/public/${response.data.Key}`;
-  console.log('from calls response: ', response);
-  console.log('from calls url: ', url);
-  console.log('from calls fileName: ', fileName);
-  console.log('from calls imageFile: ', imageFile);
-  console.log('from calls bucketName: ', bucketName);
+
   return url;
 }
