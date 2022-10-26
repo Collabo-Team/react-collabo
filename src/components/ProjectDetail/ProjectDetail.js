@@ -1,3 +1,5 @@
+import React from 'react';
+import { createRoot } from 'react-dom/client';
 import { useHistory, useParams } from 'react-router-dom';
 import { useProject } from '../../hooks/useProject';
 import { checkAuth } from '../../services/auth';
@@ -34,24 +36,23 @@ export default function ProjectDetail() {
   // checkAuth();
 
   // // eslint-disable-next-line no-undef, new-cap
-  // const playlist = WaveformPlaylist(
-  //   {
-  //     container: document.getElementById('playlist'),
-  //     samplesPerPixel: 1000,
-  //     waveHeight: 100,
-  //     timescale: true,
-  //     state: 'cursor',
-  //     // seekStyle: 'line',
-  //     isAutomaticScroll: true,
-  //     colors: {
-  //       waveOutlineColor: '#c78283',
-  //     },
-  //     zoomLevels: [128, 256, 512, 1000],
-  //     controls: {
-  //       show: true,
-  //       width: 220,
-  //     },
-  //   });
+  // const playlist = WaveformPlaylist({
+  //   container: document.getElementById('playlist'),
+  //   samplesPerPixel: 1000,
+  //   waveHeight: 100,
+  //   timescale: true,
+  //   state: 'cursor',
+  //   // seekStyle: 'line',
+  //   isAutomaticScroll: true,
+  //   colors: {
+  //     waveOutlineColor: '#c78283',
+  //   },
+  //   zoomLevels: [128, 256, 512, 1000],
+  //   controls: {
+  //     show: true,
+  //     width: 220,
+  //   },
+  // });
 
   // // HORIZONTAL SCROLLING INSIDE WAVEFORM
   // const container = document.querySelector('.playlist-tracks');
@@ -66,32 +67,23 @@ export default function ProjectDetail() {
   // });
 
   // // RENDER PROJECT
-  // function renderProject(project) {
-  //   const div = document.createElement('div');
-
-  //   const h2 = document.createElement('h2');
-  //   h2.classList.add('project-name');
-
-  //   const metadataDiv = document.createElement('div');
-  //   metadataDiv.classList.add('track-metadata');
-
-  //   const genre = document.createElement('p');
-  //   const tempo = document.createElement('p');
-  //   const timeSignature = document.createElement('p');
-  //   const key = document.createElement('p');
-
-  //   h2.textContent = project.name;
-  //   genre.textContent = project.genre;
-  //   tempo.textContent = `${project.tempo} bpm`;
-  //   timeSignature.textContent = project.time_signature;
-  //   key.textContent = project.musical_key;
-
-  //   metadataDiv.append(genre, tempo, timeSignature, key);
-  //   div.append(h2, metadataDiv);
-  //   return div;
-  // }
-
   // const projectContainer = document.getElementById('project-container');
+
+  // function renderProject(project) {
+  //   const div = React.createElement(
+  //     'div',
+  //     {},
+  //     React.createElement('h2', { className: 'project-name' }, `${project.name}`),
+  //     React.createElement('div', { className: 'track-metadata' }, [
+  //       React.createElement('p', {}, `${project.genre}`),
+  //       React.createElement('p', {}, `${project.tempo} bpm`),
+  //       React.createElement('p', {}, `${project.time_signature}`),
+  //       React.createElement('p', {}, `${project.musical_key}`),
+  //     ])
+  //   );
+  //   const root = createRoot(document.getElementById('project-container'));
+  //   root.render(div);
+  // }
 
   // let project = null;
 
