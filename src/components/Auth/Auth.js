@@ -31,21 +31,21 @@ export default function Auth() {
 
   return (
     <>
-      { authError && <div>{ authError }</div> }
+      {authError && <div>{authError}</div>}
       <div className="form-controls">
         <label htmlFor="email">Email:</label>
-        <input type="text" id="email" value={ email } onChange={ (e) => setEmail(e.target.value) } />
+        <input type="text" id="email" value={email} onChange={(e) => setEmail(e.target.value)} />
       </div>
       <div className="form-controls">
         <label htmlFor="password">Password:</label>
         <input
           type="password"
           id="password"
-          value={ password }
-          onChange={ (e) => setPassword(e.target.value) }
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
         />
       </div>
-      <button onClick={ clickHandler }>Submit</button>
+      <button onClick={clickHandler}>Submit</button>
     </>
   );
 }
