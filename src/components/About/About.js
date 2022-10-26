@@ -1,8 +1,6 @@
 import React from 'react';
 import NavBar from '../NavBar/NavBar';
-// https://github.com/ryanjeffrey
-// https://www.linkedin.com/in/ryan-jeffrey-smith/
-// https://github.com/ryan-j-parker
+
 export default function About() {
   const devs = [
     {
