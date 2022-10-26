@@ -1,34 +1,38 @@
 header {
-    margin: 48px 48px 0 48px;
+  margin: 48px 48px 0 48px;
 }
 
 header p {
-    font-family: var(--logo-font);
-    font-size: 2.4em;
+  font-family: var(--logo-font);
+  font-size: 2.4em;
 }
 
 nav {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
 }
 
 nav a {
-    color: inherit;
+  color: inherit;
 }
 
 .nav-link {
-    margin-left: 32px;
-    font-size: 1em;
+  margin-left: 32px;
+  font-size: 1em;
 }
 
 .nav-links button {
-    margin-bottom: 48px;
-    font-family: var(--main-font);
-    padding: 10px 20px;
-    border-radius: .4em;
-    border: none;
-    color: white;
-    background: rgb(183, 227, 180);
-    background: linear-gradient(45deg, rgba(183, 227, 180, 1) 0%, rgba(86, 149, 137, 1) 66%);
+  margin-bottom: 48px;
+  font-family: var(--main-font);
+  padding: 10px 20px;
+  border-radius: 0.4em;
+  border: none;
+  color: white;
+  background: rgb(183, 227, 180);
+  background: linear-gradient(45deg, rgba(183, 227, 180, 1) 0%, rgba(86, 149, 137, 1) 66%);
+}
+
+#sign-out-link:hover {
+  cursor: pointer;
 }

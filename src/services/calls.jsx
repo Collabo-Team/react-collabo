@@ -76,7 +76,16 @@ export async function getProfileById(id) {
   return response.data;
 }
 
-export async function updateProfile(username, firstName, lastName, email, bio, city, projects, url) {
+export async function updateProfile(
+  username,
+  firstName,
+  lastName,
+  email,
+  bio,
+  city,
+  projects,
+  url
+) {
   const response = await client.from('profiles_og').upsert({
     user_name: username,
     first_name: firstName,
@@ -93,7 +102,7 @@ export async function updateProfile(username, firstName, lastName, email, bio, c
 //! depending on how we want to display projects, update profile may need to be changed from a string to an array to list out all the projects
 
 export async function uploadProfileImage(fileName, imageFile) {
-  const bucket = client.storage.from('files-bucket');
+  const bucket = client.storage.from('avatars');
   const response = await bucket.upload(fileName, imageFile, {
     cacheControl: '3600',
     upsert: true,

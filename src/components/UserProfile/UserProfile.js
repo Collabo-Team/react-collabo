@@ -42,7 +42,7 @@ export default function UserProfile() {
   return (
     <>
       <div className="profile-container">
-        <h3>User Profile</h3>
+        <h3>{user.email}</h3>
         <form onSubmit={handleProfile} className="profile-form" id="profile-form">
           {/* <h3>User{user.email}&apos;s profile</h3> */}
           <label htmlFor="avatar">upload avatar</label>

@@ -1,9 +1,24 @@
+import { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
+import { UserContext } from '../../context/UserContext';
 import { signOut } from '../../services/auth';
 
 import './NavBar.css';
 
 export default function NavBar() {
+  const { user, setUser } = useContext(UserContext);
+
+  const handleSignout = async () => {
+    if (user) {
+      try {
+        await signOut();
+        setUser(null);
+      } catch (e) {
+        console.error(e.message);
+      }
+    }
+  };
+
   return (
     <header>
       <nav>
@@ -20,7 +35,12 @@ export default function NavBar() {
           <NavLink to="/user-profile/:id" className="nav-link">
             Profile
           </NavLink>
-          <NavLink id="sign-out-link" to="/auth" className="nav-link" onClick={ signOut() }>
+          <NavLink
+            id="sign-out-link"
+            to="/auth/sign-in"
+            className="nav-link"
+            onClick={handleSignout}
+          >
             Sign Out
           </NavLink>
         </div>
