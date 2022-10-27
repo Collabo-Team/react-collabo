@@ -39,7 +39,7 @@ export default function Auth() {
           onChange={(e) => setPassword(e.target.value)}
         />
       </div>
-      <button onClick={ clickHandler }>Submit</button>
+      <button onClick={ clickHandler }>{ type }</button>
       <br />
       {
         type === 'sign-in' ?
