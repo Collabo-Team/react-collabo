@@ -1,5 +1,4 @@
 import React from 'react';
-import NavBar from '../NavBar/NavBar';
 
 export default function About() {
   const devs = [
@@ -33,7 +32,6 @@ export default function About() {
 
   return (
     <>
-      <NavBar navLinks={ [{ text: 'Home', path: '/' }] } />
       <div>
         <p className="about title">
           ABOUT US
@@ -49,7 +47,7 @@ export default function About() {
 function DevCard({ dev }) {
   // set functions for inserting names into paths when mapping through and calling for the links and images
   function photoFn(dev) {
-    return process.env.PUBLIC_URL + `/assets/${dev.name}.jpg`;
+    return process.env.PUBLIC_URL + `/assets/${dev.name}.png`;
   }
 
   function gitHubFn(dev) {
@@ -79,6 +77,7 @@ function DevCard({ dev }) {
       </div>
 
       <div>
+
         <a href={ gitHubFn(dev) } target="_blank noreferrer">
           <img width="42" height="42" src={ iconFn('gitHubIcon') } alt="gitHub-icon" />
         </a>
