@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Redirect, useParams } from 'react-router-dom';
+import { Redirect, Link, useParams } from 'react-router-dom';
 import { useUserContext } from '../../context/UserContext';
 import { authUser } from '../../services/auth';
 
@@ -12,15 +12,9 @@ export default function Auth() {
 
   const clickHandler = async () => {
     try {
-      // call authUser with state
       const userResp = await authUser(email, password, type);
-      // console.log({ userResp });
-      // set user
       setUser(userResp);
-
-      // redirect to /tasks
     } catch (e) {
-      // console.log(e.message);
       setAuthError(e.message);
     }
   };
@@ -45,7 +39,13 @@ export default function Auth() {
           onChange={(e) => setPassword(e.target.value)}
         />
       </div>
-      <button onClick={clickHandler}>Submit</button>
+      <button onClick={ clickHandler }>Submit</button>
+      <br />
+      {
+        type === 'sign-in' ?
+          <Link className='auth-link' to='/auth/sign-up'>sign-up</Link> :
+          <Link className='auth-link' to='/auth/sign-in'>sign-in</Link>
+      }
     </>
   );
 }
