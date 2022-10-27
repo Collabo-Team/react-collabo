@@ -1,4 +1,5 @@
 import React from 'react';
+import './About.css';
 
 export default function About() {
   const devs = [
@@ -6,6 +7,7 @@ export default function About() {
       name: 'Ryan Smith',
       gitHubUserName: 'ryanjeffrey',
       linkedInUserName: 'ryan-jeffrey-smith',
+      spotifyLink: ''
     },
     {
       name: 'Eddie Kuo',
@@ -32,14 +34,15 @@ export default function About() {
 
   return (
     <>
-      <div>
-        <p className="about title">
-          ABOUT US
+      <h2 id="title">ABOUT US</h2>
+      <section id="about-container">
+        <p className="image-wrapper">
+          { devs.map((dev, index) => <DevCard
+            key={ index }
+            dev={ dev }
+          />) }
         </p>
-        <span>
-          { devs.map((dev, index) => <DevCard key={ index } dev={ dev } />) }
-        </span>
-      </div>
+      </section>
     </>
   );
 }
@@ -63,32 +66,49 @@ function DevCard({ dev }) {
   }
 
   return (
-    <section>
+    <section className="dev-wrapper">
+
       <div>
-        <a href={ gitHubFn(dev) } target="_blank noreferrer">
-          <img src={ photoFn(dev) } />
+        <a href={ gitHubFn(dev) } target="_blank noreferrer" className="headshot-wrapper">
+          <img src={ photoFn(dev) } className="headshot" />
+          { dev.name }
         </a>
       </div>
-
-      <div>
-        <p>
-          { dev.name }
-        </p>
-      </div>
-
-      <div>
-
+      <br />
+      <div className="icon-wrapper">
         <a href={ gitHubFn(dev) } target="_blank noreferrer">
-          <img width="42" height="42" src={ iconFn('gitHubIcon') } alt="gitHub-icon" />
+          <img
+            width="32"
+            height="32"
+            src={
+              iconFn('gitHubIcon') }
+            alt="gitHub-icon"
+            className="github icon"
+          />
         </a>
 
         <a href={ linkedInFn(dev) } target="_blank noreferrer">
-          <img width="42" height="42" src={ iconFn('linkedInIcon') } alt="linkedIn-icon" />
+          <img
+            width="32"
+            height="32"
+            src={
+              iconFn('linkedInIcon') }
+            alt="linkedIn-icon"
+            className="linkedin icon"
+          />
         </a>
 
         { dev.spotifyLink &&
           <a href={ dev.spotifyLink } target="_blank noreferrer">
-            <img width="42" height="42" src={ iconFn('spotifyIcon') } alt="linkedIn-icon" />
+            <img
+              width="32"
+              height="32"
+              src={
+                iconFn('spotifyIcon')
+              }
+              alt="linkedIn-icon"
+              className="spotify icon"
+            />
           </a>
         }
       </div>
