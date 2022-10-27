@@ -37,20 +37,20 @@ export default function Auth() {
         <div id="sign-in-p">
           <p id="auth-header">Sign in to your account</p>
         </div>
-        <form id="auth-form">
-          <label htmlFor="email">Email:</label>
-          <input type="text" id="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-          <label htmlFor="password">Password:</label>
-          <input
-            type="password"
-            id="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <button id="sign-in-btn" className="collabo-btn" onClick={clickHandler}>
-            Submit
-          </button>
-        </form>
+        {/* <form id="auth-form" onSubmit={clickHandler}> */}
+        <label htmlFor="email">Email:</label>
+        <input type="text" id="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+        <label htmlFor="password">Password:</label>
+        <input
+          type="password"
+          id="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <button id="sign-in-btn" className="collabo-btn" onClick={clickHandler}>
+          Submit
+        </button>
+        {/* </form> */}
       </div>
     </>
   );

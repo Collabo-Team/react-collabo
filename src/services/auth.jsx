@@ -1,6 +1,6 @@
 // Boilerplate React auth code below
 
-import { createProfile } from './calls';
+// import { createProfile } from './calls';
 import { client } from './client';
 
 export function getUser() {
@@ -11,13 +11,12 @@ export async function authUser(email, password, type) {
   let response;
   if (type === 'sign-up') {
     response = await client.auth.signUp({ email, password });
-    await createProfile();
+    // await createProfile();
   } else {
     response = await client.auth.signIn({ email, password });
   }
   return response.user;
 }
-
 
 export async function signOut() {
   await client.auth.signOut();
