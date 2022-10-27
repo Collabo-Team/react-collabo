@@ -7,6 +7,7 @@ import StartProject from './components/StartProject/StartProject';
 import Home from './components/Home/Home';
 import NavBar from './components/NavBar/NavBar';
 import ProjectDetail from './components/ProjectDetail/ProjectDetail';
+import Projects from './components/Projects/Projects';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/user-profile/:id" component={UserProfile} />
         <Route path="/start-project/:id" component={StartProject} />
         <Route path="/projects/:id" component={ProjectDetail} />
+        <Route path="/projects/" component={Projects} />
         <Route exact path="/" component={Home} />
       </Switch>
     </div>
