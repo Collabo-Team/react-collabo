@@ -1,4 +1,4 @@
-import { client } from './client';
+import { checkError, client } from './client';
 
 /* Data functions */
 export async function newProject(project) {
@@ -65,23 +65,44 @@ export async function getProjects() {
 // PROFILE FETCH FNS
 
 export async function createProfile(profile) {
-  return await client.from('profiles').insert(profile).single();
+  return await client.from('profiles_og').insert(profile).single();
 }
 
 export async function getProfileById(id) {
-  const response = await client.from('profiles').select('*').match({ id }).single();
+  const response = await client.from('profiles_og').select('*').match({ id }).single();
   if (response.error) {
     throw new Error(response.error.message);
   }
   return response.data;
 }
 
-export async function updateProfile(profile) {
-  return await client.from('profiles_og').upsert(profile).single();
+export async function updateProfile(
+  username,
+  firstName,
+  lastName,
+  email,
+  bio,
+  city,
+  projects,
+  url
+) {
+  const response = await client.from('profiles_og').upsert({
+    user_name: username,
+    first_name: firstName,
+    last_name: lastName,
+    email: email,
+    bio: bio,
+    location: city,
+    projects: projects,
+    image_file: url,
+  });
+  return checkError(response);
 }
 
-export async function uploadProfilePhoto(bucketName, fileName, imageFile) {
-  const bucket = client.storage.from(bucketName);
+//! depending on how we want to display projects, update profile may need to be changed from a string to an array to list out all the projects
+
+export async function uploadProfileImage(fileName, imageFile) {
+  const bucket = client.storage.from('avatars');
 
   const response = await bucket.upload(fileName, imageFile, {
     cacheControl: '3600',
