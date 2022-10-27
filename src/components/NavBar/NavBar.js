@@ -9,14 +9,14 @@ export default function NavBar() {
   const { user, setUser } = useContext(UserContext);
 
   const handleSignout = async () => {
-    if (user) {
-      try {
-        await signOut();
-        setUser(null);
-      } catch (e) {
-        console.error(e.message);
-      }
+    // if (user) {
+    try {
+      await signOut();
+      setUser(null);
+    } catch (e) {
+      console.error(e.message);
     }
+    // }
   };
 
   return (
@@ -32,17 +32,27 @@ export default function NavBar() {
           <NavLink to="/about" className="nav-link">
             About
           </NavLink>
-          <NavLink to="/user-profile/:id" className="nav-link">
-            Profile
-          </NavLink>
-          <NavLink
-            id="sign-out-link"
-            to="/auth/sign-in"
-            className="nav-link"
-            onClick={handleSignout}
-          >
-            Sign Out
-          </NavLink>
+          {!user ? (
+            <NavLink to="/auth/sign-up" className="nav-link">
+              Sign in
+            </NavLink>
+          ) : null}
+          {user ? (
+            <NavLink to="/user-profile/:id" className="nav-link">
+              Profile
+            </NavLink>
+          ) : null}
+
+          {user ? (
+            <NavLink
+              id="sign-out-link"
+              to="/auth/sign-in"
+              className="nav-link"
+              onClick={handleSignout}
+            >
+              Sign Out
+            </NavLink>
+          ) : null}
         </div>
       </nav>
     </header>

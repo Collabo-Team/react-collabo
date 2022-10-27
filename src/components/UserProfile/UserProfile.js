@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { UserContext } from '../../context/UserContext';
 import { updateProfile, uploadProfileImage } from '../../services/calls';
 import './UserProfile.css';
@@ -34,6 +34,8 @@ export default function UserProfile() {
     }
     await updateProfile(username, firstName, lastName, email, bio, city, projects, url);
   };
+
+  // useEffect(() => {}, []);
 
   //! Issue we faced:
   //* Needed to route to user signup to create a new account before I can then go into profile page to update

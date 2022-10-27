@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Redirect, useParams } from 'react-router-dom';
 import { useUserContext } from '../../context/UserContext';
 import { authUser } from '../../services/auth';
+import './Auth.css';
 
 export default function Auth() {
   const { type } = useParams();
@@ -31,21 +32,26 @@ export default function Auth() {
 
   return (
     <>
-      { authError && <div>{ authError }</div> }
-      <div className="form-controls">
-        <label htmlFor="email">Email:</label>
-        <input type="text" id="email" value={ email } onChange={ (e) => setEmail(e.target.value) } />
+      {authError && <div>{authError}</div>}
+      <div className="form-content">
+        <div id="sign-in-p">
+          <p id="auth-header">Sign in to your account</p>
+        </div>
+        <form id="auth-form">
+          <label htmlFor="email">Email:</label>
+          <input type="text" id="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+          <label htmlFor="password">Password:</label>
+          <input
+            type="password"
+            id="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <button id="sign-in-btn" className="collabo-btn" onClick={clickHandler}>
+            Submit
+          </button>
+        </form>
       </div>
-      <div className="form-controls">
-        <label htmlFor="password">Password:</label>
-        <input
-          type="password"
-          id="password"
-          value={ password }
-          onChange={ (e) => setPassword(e.target.value) }
-        />
-      </div>
-      <button onClick={ clickHandler }>Submit</button>
     </>
   );
 }
