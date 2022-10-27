@@ -13,6 +13,9 @@ export default function NavBar() {
           <NavLink to="/start-project/:id">
             <button>Start a Collabo</button>
           </NavLink>
+          <NavLink to="/projects" className="nav-link">
+            Projects
+          </NavLink>
           <NavLink to="/about" className="nav-link">
             About
           </NavLink>
