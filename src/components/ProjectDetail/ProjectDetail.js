@@ -18,6 +18,7 @@
 
 // export default function ProjectDetail() {
 //   const { id } = useParams();
+
 //   // const history = useHistory();
 //   // const { projectDetail, setProjectDetail, loading, error, setError } = useProject(id);
 //   // if (loading) return <h1>Loading...</h1>;
@@ -208,6 +209,195 @@
 //   //   loaderEl.style.display = 'none';
 //   // });
 
+// const history = useHistory();
+// const { projectDetail, setProjectDetail, loading, error, setError } = useProject(id);
+// if (loading) return <h1>Loading...</h1>;
+// if (error) return <h1>{error}</h1>;
+
+// const handleSubmit = async () => {
+//   console.log('update post called');
+//   try {
+//     await updateP(postDetail.id, postDetail.title, postDetail.description);
+//     history.push('/');
+//   } catch (e) {
+//     setError(e.message);
+//   }
+// };
+
+// checkAuth();
+
+// // eslint-disable-next-line no-undef, new-cap
+// const playlist = WaveformPlaylist({
+//   container: document.getElementById('playlist'),
+//   samplesPerPixel: 1000,
+//   waveHeight: 100,
+//   timescale: true,
+//   state: 'cursor',
+//   // seekStyle: 'line',
+//   isAutomaticScroll: true,
+//   colors: {
+//     waveOutlineColor: '#c78283',
+//   },
+//   zoomLevels: [128, 256, 512, 1000],
+//   controls: {
+//     show: true,
+//     width: 220,
+//   },
+// });
+
+// // HORIZONTAL SCROLLING INSIDE WAVEFORM
+// const container = document.querySelector('.playlist-tracks');
+// container.addEventListener('wheel', function(e) {
+//   if (e.deltaY > 0) {
+//     container.scrollLeft += 100;
+//     e.preventDefault();
+//   } else {
+//     container.scrollLeft -= 100;
+//     e.preventDefault();
+//   }
+// });
+
+// // RENDER PROJECT
+// const projectContainer = document.getElementById('project-container');
+
+// function renderProject(project) {
+//   const div = React.createElement(
+//     'div',
+//     {},
+//     React.createElement('h2', { className: 'project-name' }, `${project.name}`),
+//     React.createElement('div', { className: 'track-metadata' }, [
+//       React.createElement('p', {}, `${project.genre}`),
+//       React.createElement('p', {}, `${project.tempo} bpm`),
+//       React.createElement('p', {}, `${project.time_signature}`),
+//       React.createElement('p', {}, `${project.musical_key}`),
+//     ])
+//   );
+//   const root = createRoot(document.getElementById('project-container'));
+//   root.render(div);
+// }
+
+// let project = null;
+
+// // UPLOAD TRACK FORM
+// const uploadForm = document.getElementById('upload-form');
+
+// function downloadBlob(blob, instrument) {
+//   const a = document.createElement('a');
+//   const url = window.URL.createObjectURL(blob);
+//   a.href = url;
+//   a.download = project.name + '-' + instrument + '.mp3';
+//   a.click();
+//   window.URL.revokeObjectURL(url);
+// }
+
+// async function downloadTrack(track) {
+//   const response = await getTrack(track.folder);
+//   const blob = response.data;
+//   downloadBlob(blob, track.instrument);
+// }
+
+// const downloadButton = document.getElementById('download-button');
+// downloadButton.addEventListener('click', async () => {
+//   project = await getProject(id);
+//   Promise.all(project.tracks.map(downloadTrack));
+// });
+
+// const params = new URLSearchParams(window.location.search);
+// async function loadDetails() {
+//   projectContainer.textContent = '';
+//   project = await getProject(id);
+//   const projectDisplay = renderProject(project);
+//   projectContainer.append(projectDisplay);
+//   await displayTracks(project.tracks);
+
+//   uploadForm.addEventListener('submit', async (e) => {
+//     e.preventDefault();
+//     const formData = new FormData(uploadForm);
+
+//     const trackUpload = {
+//       instrument: formData.get('instrument'),
+//     };
+
+//     const audioFile = formData.get('audio-input');
+//     if (audioFile.size) {
+//       const audioName = `${project.id}/${Math.floor(Math.random() * 1000000)}${audioFile.name}`;
+//       const url = await uploadAudio('files-bucket', audioName, audioFile);
+//       trackUpload.folder = audioName;
+//       trackUpload.url = url;
+//       trackUpload.project_id = project.id;
+//       await updateTrack(trackUpload);
+//     }
+//     uploadForm.reset();
+//   });
+// }
+
+// loadDetails();
+
+// var userMediaStream;
+// const constraints = { audio: true };
+
+// navigator.getUserMedia =
+//   navigator.getUserMedia ||
+//   navigator.webkitGetUserMedia ||
+//   navigator.mozGetUserMedia ||
+//   navigator.msGetUserMedia;
+
+// function gotStream(stream) {
+//   userMediaStream = stream;
+//   playlist.initRecorder(userMediaStream);
+// }
+
+// function logError(err) {
+//   console.error(err);
+// }
+
+// //initialize the WAV exporter.
+// playlist.initExporter();
+
+// if (navigator.mediaDevices) {
+//   navigator.mediaDevices.getUserMedia(constraints).then(gotStream).catch(logError);
+// } else if (navigator.getUserMedia && 'MediaRecorder' in window) {
+//   navigator.getUserMedia(constraints, gotStream, logError);
+// }
+
+// const playButton = document.getElementById('play-button');
+// const pauseButton = document.getElementById('pause-button');
+// const stopButton = document.getElementById('stop-button');
+// const recordButton = document.getElementById('record-button');
+
+// const ee = playlist.getEventEmitter();
+
+// async function displayTracks(tracks) {
+//   const loadList = [];
+//   for (const track of tracks) {
+//     loadList.push({ src: track.url, name: track.instrument });
+//   }
+
+//   await playlist.load(loadList);
+
+//   playButton.addEventListener('click', () => {
+//     ee.emit('play');
+//   });
+
+//   pauseButton.addEventListener('click', () => {
+//     ee.emit('pause');
+//   });
+
+//   stopButton.addEventListener('click', () => {
+//     ee.emit('stop');
+//   });
+
+//   recordButton.addEventListener('click', () => {
+//     ee.emit('record');
+//   });
+// }
+// updateTrackInRealtime(loadDetails, playlist, params.get('id'));
+
+// // TRACK LOADING STATE
+// const loaderEl = document.querySelector('.loader');
+// ee.on('audiosourcesrendered', function() {
+//   loaderEl.style.display = 'none';
+// });
 //   return (
 //     <>
 //       <div className="section-wrapper">

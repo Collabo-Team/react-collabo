@@ -1,10 +1,11 @@
 import { useProjects } from '../../hooks/useProjects';
 import Project from '../Project/Project';
+import loadingIcon from '../../collabo-icon-blk.png';
 
 import './Home.css';
 
 export default function Home() {
-  const { projects } = useProjects();
+  const { loading, projects } = useProjects();
   return (
     <main>
       <div className="header">
@@ -40,11 +41,17 @@ export default function Home() {
         <h2 className="headline title">Featured Projects:</h2>
 
         <div className="project-wrapper">
-          <div className="projects-container">
-            {projects.map((project) => (
-              <Project key={project.id} {...project} />
-            ))}
-          </div>
+          {loading ? (
+            <div className="loading-container">
+              <img className="loading-icon" src={loadingIcon} />
+            </div>
+          ) : (
+            <div className="projects-container">
+              {projects.map((project) => (
+                <Project key={project.id} {...project} />
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </main>

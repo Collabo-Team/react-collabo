@@ -1,8 +1,17 @@
-/* css for hamburger menu in nav
+/* @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,500;1,400&display=swap');
+ 
+css for hamburger menu in nav
 
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,500;1,400&display=swap');
+:root {
+  --logo-font: 'Megrim', cursive;
+  --main-font: 'Space Mono', monospace;
+}
+
+/* * {
+} */
 
 * {
+    max-width: 1200px;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -115,3 +124,88 @@ a {
     }
 }
 */
+
+.form-content {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10%;
+}
+
+.page-header {
+  display: flow-root;
+}
+
+.logo {
+  font-family: var(--logo-font);
+  font-size: 2.4em;
+  float: left;
+  margin-top: 5px;
+}
+
+#logo-img {
+  height: 50px;
+  width: auto;
+  float: right;
+}
+
+#auth-header {
+  font-size: 1.4rem;
+  margin-bottom: 5px;
+}
+
+#collabo-logo {
+  margin: 0 auto;
+}
+
+.form-content {
+  margin-top: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#auth-form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 0 auto;
+  max-width: 500px;
+  border: 1px solid;
+}
+
+#auth-header.title {
+  font-family: var(--main-font);
+}
+
+#auth-input,
+button {
+  font-family: var(--main-font);
+}
+
+#sign-in-p {
+  font-family: var(--main-font);
+}
+
+#sign-in-btn {
+  background-color: rgba(128, 128, 128, 0.377);
+  width: 60%;
+  margin: 20px auto;
+  margin-top: 5%;
+  border-radius: 0.4em;
+  box-shadow: 0px 0px 2px -2px;
+}
+
+#sign-in-btn:hover {
+  background: linear-gradient(45deg, rgba(86, 149, 137, 1) 45%, rgba(183, 227, 180, 1) 80%);
+}
+
+#sign-in-btn:active {
+  transform: scale(0.98);
+}
+
+footer {
+  visibility: hidden;
+}

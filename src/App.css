@@ -1,22 +1,43 @@
 @import url('https://fonts.googleapis.com/css2?family=Megrim&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
 :root {
-    --logo-font: 'Megrim', cursive;
-    --main-font: 'Space Mono', monospace;
+  --logo-font: 'Megrim', cursive;
+  --main-font: 'Space Mono', monospace;
 }
 
 /* GLOBAL STYLES */
 
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-    font-family: var(--main-font);
+  font-family: var(--main-font);
 }
 
 button {
-    cursor: pointer;
+  cursor: pointer;
+}
+
+.loading-container {
+  height: 100vh;
+  width: 100vw;
+}
+
+.loading-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: rotation 2s infinite linear;
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
 }
