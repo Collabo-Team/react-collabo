@@ -34,7 +34,7 @@ export default function About() {
 
   return (
     <>
-      <h2 id="title">ABOUT US</h2>
+      <h1 id="title">ABOUT US</h1>
       <section id="about-container">
         <p className="image-wrapper">
           { devs.map((dev, index) => <DevCard
