@@ -43,7 +43,7 @@ export default function Auth() {
         <button id="sign-in-btn" className="collabo-btn" onClick={clickHandler}>
           Submit
         </button>
-    </div>
+      </div>
       <button onClick={ clickHandler }>{ type }</button>
       <br />
       {

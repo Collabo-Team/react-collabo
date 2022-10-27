@@ -1,23 +1,23 @@
-import { useContext } from 'react';
+/* eslint-disable no-console */
 import { NavLink } from 'react-router-dom';
-import { UserContext } from '../../context/UserContext';
+import { useUserContext } from '../../context/UserContext';
 import { signOut } from '../../services/auth';
 
 import './NavBar.css';
 
 export default function NavBar() {
-  // const [user, setUser] = useContext(UserContext);
+  const { setUser } = useUserContext();
 
-  // const handleSignout = async () => {
-  //   try {
-  //     await signOut();
-  //     setUser(null);
-  //   } catch (e) {
-  //     console.error(e.message);
-  //   }
-  // };
+  const handleSignOut = async () => {
+    try {
+      await signOut();
+      setUser(null);
+    } catch (e) {
+      console.error(e.message);
+    }
+  };
 
-  //! link user avatar on {line 43} once we set up global state for user profile date
+  // ! link user avatar on {line 43} once we set up global state for user profile date
   return (
     <header>
       <nav>
@@ -31,7 +31,7 @@ export default function NavBar() {
           <NavLink to="/about" className="nav-link">
             About
           </NavLink>
-          
+
           <NavLink to="/auth/sign-up" onClick={ handleSignOut }>Sign Out</NavLink>
 
           <NavLink to="/auth/sign-in" className="nav-link">
@@ -44,17 +44,6 @@ export default function NavBar() {
               className="nav-avatar"
             />
           </NavLink>
-          {/* ) : null} */}
-          {/* {user ? ( */}
-          {/* <NavLink
-            id="sign-out-link"
-            to="/auth/sign-in"
-            className="nav-link"
-            onClick={handleSignout}
-          >
-            Sign Out
-          </NavLink> */}
-          {/* ) : null} */}
         </div>
       </nav>
     </header>
