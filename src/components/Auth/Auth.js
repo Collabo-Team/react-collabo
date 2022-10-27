@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Redirect, useParams } from 'react-router-dom';
 import { useUserContext } from '../../context/UserContext';
 import { authUser } from '../../services/auth';
+import './Auth.css';
 
 export default function Auth() {
   const { type } = useParams();
@@ -12,15 +13,9 @@ export default function Auth() {
 
   const clickHandler = async () => {
     try {
-      // call authUser with state
       const userResp = await authUser(email, password, type);
-      // console.log({ userResp });
-      // set user
       setUser(userResp);
-
-      // redirect to /tasks
     } catch (e) {
-      // console.log(e.message);
       setAuthError(e.message);
     }
   };
@@ -32,11 +27,12 @@ export default function Auth() {
   return (
     <>
       {authError && <div>{authError}</div>}
-      <div className="form-controls">
+      <div className="form-content">
+        <div id="sign-in-p">
+          <p id="auth-header">Sign in to your account</p>
+        </div>
         <label htmlFor="email">Email:</label>
         <input type="text" id="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-      </div>
-      <div className="form-controls">
         <label htmlFor="password">Password:</label>
         <input
           type="password"
@@ -44,8 +40,10 @@ export default function Auth() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
+        <button id="sign-in-btn" className="collabo-btn" onClick={clickHandler}>
+          Submit
+        </button>
       </div>
-      <button onClick={clickHandler}>Submit</button>
     </>
   );
 }
