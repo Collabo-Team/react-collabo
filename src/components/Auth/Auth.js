@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Redirect, useParams } from 'react-router-dom';
+import { Redirect, Link, useParams } from 'react-router-dom';
 import { useUserContext } from '../../context/UserContext';
 import { authUser } from '../../services/auth';
 import './Auth.css';
@@ -43,7 +43,14 @@ export default function Auth() {
         <button id="sign-in-btn" className="collabo-btn" onClick={clickHandler}>
           Submit
         </button>
-      </div>
+    </div>
+      <button onClick={ clickHandler }>{ type }</button>
+      <br />
+      {
+        type === 'sign-in' ?
+          <Link className='auth-link' to='/auth/sign-up'>sign-up</Link> :
+          <Link className='auth-link' to='/auth/sign-in'>sign-in</Link>
+      }
     </>
   );
 }

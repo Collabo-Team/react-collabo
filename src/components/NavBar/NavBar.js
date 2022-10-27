@@ -17,8 +17,7 @@ export default function NavBar() {
   //   }
   // };
 
-  //! link user avatar on {line 43} once we set up global state for user profile data
-
+  //! link user avatar on {line 43} once we set up global state for user profile date
   return (
     <header>
       <nav>
@@ -32,12 +31,13 @@ export default function NavBar() {
           <NavLink to="/about" className="nav-link">
             About
           </NavLink>
-          {/* {!user ? ( */}
+          
+          <NavLink to="/auth/sign-up" onClick={ handleSignOut }>Sign Out</NavLink>
+
           <NavLink to="/auth/sign-in" className="nav-link">
             Sign in
           </NavLink>
-          {/* ) : null} */}
-          {/* {user ? ( */}
+
           <NavLink to="/user-profile/:id" className="nav-link">
             <img
               src={process.env.PUBLIC_URL + '/avatar-placeholder-circle.png'}
