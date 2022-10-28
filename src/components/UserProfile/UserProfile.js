@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 import { useUserContext } from '../../context/UserContext';
 import { updateProfile, uploadProfileImage } from '../../services/calls';
 import './UserProfile.css';
