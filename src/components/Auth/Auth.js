@@ -34,7 +34,7 @@ export default function Auth() {
             {type === 'sign-in' ? 'Sign in to your account' : 'Create a new account'}
           </p>
         </div>
-        <form id="auth-form">
+        <div id="auth-form">
           <label htmlFor="email">Email:</label>
           <input type="text" id="email" value={email} onChange={(e) => setEmail(e.target.value)} />
           <label htmlFor="password">Password:</label>
@@ -56,7 +56,7 @@ export default function Auth() {
               Already have an account?
             </Link>
           )}
-        </form>
+        </div>
       </div>
     </>
   );
