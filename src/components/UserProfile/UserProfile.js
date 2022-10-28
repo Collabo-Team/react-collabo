@@ -1,27 +1,28 @@
 import { useContext, useEffect, useState } from 'react';
-import { UserContext } from '../../context/UserContext';
+import { UserContext, useUserContext } from '../../context/UserContext';
 import { updateProfile, uploadProfileImage } from '../../services/calls';
 import './UserProfile.css';
 import { useRef } from 'react';
 import useProfile from '../../hooks/useProfile';
 import useAvatar from '../../hooks/useAvatar';
+import { Redirect, useHistory } from 'react-router-dom';
 
 export default function UserProfile() {
   const { user } = useContext(UserContext);
   const [username, setUsername] = useState('');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
-  const [email, setEmail] = useState('');
   const [bio, setBio] = useState('');
   const [city, setCity] = useState('');
   const [projects, setProjects] = useState('');
   const [imageFile, setImageFile] = useState('');
 
   const imageRef = useRef(null);
-  const { setProfile, profile } = useProfile();
+  const { setProfile, profile } = useUserContext();
   const { result, uploader } = useAvatar();
+  const history = useHistory();
 
-  const handleProfile = async (e) => {
+  async function handleProfile(e) {
     e.preventDefault();
     let url = null;
     if (imageFile.name) {
@@ -30,10 +31,13 @@ export default function UserProfile() {
 
       url = await uploadProfileImage(imagePath, imageFile);
     }
-    await updateProfile(username, firstName, lastName, email, bio, city, projects, url);
+    await updateProfile(username, firstName, lastName, bio, city, projects, url);
+    console.log('profile', profile);
+    console.log('user', user);
 
     setProfile(profile);
-  };
+    history.push('/profile-display/:id');
+  }
 
   //! Issue we faced:
   //* Needed to route to user signup to create a new account before I can then go into profile page to update
@@ -83,13 +87,6 @@ export default function UserProfile() {
             onChange={(e) => setLastName(e.target.value)}
             name="last-name"
             placeholder={lastName}
-          />
-          <label htmlFor="email">email</label>
-          <input
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            name="email"
-            placeholder={email}
           />
           <label htmlFor="city">city</label>
           <input

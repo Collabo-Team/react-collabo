@@ -80,7 +80,6 @@ export async function updateProfile(
   username,
   firstName,
   lastName,
-  email,
   bio,
   city,
   projects,
@@ -90,9 +89,8 @@ export async function updateProfile(
     username: username,
     first_name: firstName,
     last_name: lastName,
-    email: email,
     bio: bio,
-    location: location,
+    city: city,
     projects: projects,
     avatar_url: url,
   });

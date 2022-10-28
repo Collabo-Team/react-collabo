@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import { UserContext } from '../../context/UserContext';
 import useProfile from '../../hooks/useProfile';
+import './ProfileDisplay.css';
 
 export default function ProfileDisplay() {
   const { user } = useContext(UserContext);
@@ -21,7 +22,7 @@ export default function ProfileDisplay() {
         </div>
       ) : (
         <div className="profile-container">
-          <div className="">
+          <div className="user-profile">
             <img src={user.avatar_url} />
             <p>{user.username}</p>
             <p>{user.firstName}</p>

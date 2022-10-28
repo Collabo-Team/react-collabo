@@ -15,6 +15,8 @@ export default function Auth() {
     try {
       const userResp = await authUser(email, password, type);
       setUser(userResp);
+
+      
     } catch (e) {
       setAuthError(e.message);
     }
@@ -44,13 +46,17 @@ export default function Auth() {
           Submit
         </button>
       </div>
-      <button onClick={ clickHandler }>{ type }</button>
+      <button onClick={clickHandler}>{type}</button>
       <br />
-      {
-        type === 'sign-in' ?
-          <Link className='auth-link' to='/auth/sign-up'>sign-up</Link> :
-          <Link className='auth-link' to='/auth/sign-in'>sign-in</Link>
-      }
+      {type === 'sign-in' ? (
+        <Link className="auth-link" to="/auth/sign-up">
+          sign-up
+        </Link>
+      ) : (
+        <Link className="auth-link" to="/auth/sign-in">
+          sign-in
+        </Link>
+      )}
     </>
   );
 }
