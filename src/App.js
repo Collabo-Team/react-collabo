@@ -13,12 +13,24 @@ function App() {
     <div className="App">
       <NavBar />
       <Switch>
-        <Route path="/about" component={About} />
-        <Route path="/auth/:type" component={Auth} />
-        <Route path="/user-profile/:id" component={UserProfile} />
-        <Route path="/start-project/:id" component={StartProject} />
-        <Route path="/projects/:id" component={ProjectDetail} />
-        <Route exact path="/" component={Home} />
+        <Route path="/about">
+          <About/>
+        </Route>
+        <Route path="/auth/:type">
+          <Auth/>
+        </Route>
+        <Route path="/user-profile/:id">
+          <UserProfile/>
+        </Route>
+        <Route path="/start-project/:id">
+          <StartProject/>
+        </Route>
+        <Route path="/projects/:id">
+          <ProjectDetail/>
+        </Route>
+        <Route exact path="/">
+          <Home/>
+        </Route>
       </Switch>
     </div>
   );
