@@ -36,6 +36,14 @@ export default function About() {
     <>
       <h1 id="title">ABOUT US</h1>
       <section id="about-container">
+
+        <div className="div-2">
+          <p className="mission-statement">We are on a mission to unite musicians all over the world,<strong> one Collabo at a time.</strong>
+          </p>
+          <br />
+          <br />
+        </div>
+        
         <p className="devCard-wrapper">
           { devs.map((dev, index) => <DevCard key={ index } dev={ dev } />) }
         </p>
