@@ -1,5 +1,5 @@
 import { useContext, useState } from 'react';
-import { UserContext } from '../../context/UserContext';
+import { useUserContext } from '../../context/UserContext';
 import { updateProfile, uploadProfileImage } from '../../services/calls';
 import './UserProfile.css';
 import { useRef } from 'react';
@@ -7,7 +7,7 @@ import { useRef } from 'react';
 import useAvatar from '../../hooks/useAvatar';
 
 export default function UserProfile() {
-  const { user } = useContext(UserContext);
+  const { user } = useUserContext();
   const [username, setUsername] = useState('');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
