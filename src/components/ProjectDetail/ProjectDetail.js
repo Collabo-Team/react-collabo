@@ -1,8 +1,9 @@
+/* eslint-disable no-console */
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import { useHistory, useParams } from 'react-router-dom';
-import { useProject } from '../../hooks/useProject';
-import { checkAuth } from '../../services/auth';
+import { useParams } from 'react-router-dom';
+// import { useProject } from '../../hooks/useProject';
+// import { getUser } from '../../services/auth';
 import {
   getProject,
   getTrack,
@@ -19,7 +20,7 @@ import { useEffect } from 'react';
 
 export default function ProjectDetail() {
   const { id } = useParams();
- 
+
   // const history = useHistory();
   // const { projectDetail, setProjectDetail, loading, error, setError } = useProject(id);
   // if (loading) return <h1>Loading...</h1>;
@@ -35,7 +36,7 @@ export default function ProjectDetail() {
   //   }
   // };
 
-  // checkAuth();
+  // getUser();
 
   useEffect(() => {
     // eslint-disable-next-line no-undef, new-cap

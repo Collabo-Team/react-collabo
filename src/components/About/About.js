@@ -7,7 +7,7 @@ export default function About() {
       name: 'Ryan Smith',
       gitHubUserName: 'ryanjeffrey',
       linkedInUserName: 'ryan-jeffrey-smith',
-      spotifyLink: ''
+      spotifyLink: 'https://open.spotify.com/artist/02EBOshbjg80iHM2vawbyD?si=OSeUK7OdR9CsY_86Vp9X5Q&nd=1'
     },
     {
       name: 'Eddie Kuo',
@@ -36,11 +36,16 @@ export default function About() {
     <>
       <h1 id="title">ABOUT US</h1>
       <section id="about-container">
-        <p className="image-wrapper">
-          { devs.map((dev, index) => <DevCard
-            key={ index }
-            dev={ dev }
-          />) }
+
+        <div className="div-2">
+          <p className="mission-statement">We are on a mission to unite musicians all over the world,<strong> one Collabo at a time.</strong>
+          </p>
+          <br />
+          <br />
+        </div>
+        
+        <p className="devCard-wrapper">
+          { devs.map((dev, index) => <DevCard key={ index } dev={ dev } />) }
         </p>
       </section>
     </>
@@ -48,7 +53,7 @@ export default function About() {
 }
 
 function DevCard({ dev }) {
-  // set functions for inserting names into paths when mapping through and calling for the links and images
+
   function photoFn(dev) {
     return process.env.PUBLIC_URL + `/assets/${dev.name}.png`;
   }
@@ -76,6 +81,7 @@ function DevCard({ dev }) {
       </div>
       <br />
       <div className="icon-wrapper">
+
         <a href={ gitHubFn(dev) } target="_blank noreferrer">
           <img
             width="32"
@@ -97,8 +103,8 @@ function DevCard({ dev }) {
             className="linkedin icon"
           />
         </a>
-
-        { dev.spotifyLink &&
+        {
+          dev.spotifyLink &&
           <a href={ dev.spotifyLink } target="_blank noreferrer">
             <img
               width="32"
@@ -115,3 +121,14 @@ function DevCard({ dev }) {
     </section>
   );
 }
+
+
+/*
+lns 5-33: build array of dev information to display
+lns 39-45: map through array of dev information to display each dev's information in DevCard component as appropriate
+ln 52: build DevCard component which will hold each dev's information
+lns 54-68: build functions that will return links to desired data for each dev in array
+lns 73-82: call functions in placeholders for dev image and dev name wrapped in links to dev information
+lns 84-121: call functions in placeholders for icons wrapped in links to dev information as appropriate
+lns 107-120: conditionally include placeholder for spotify icon and link, based on whether or not the dev has spotifyLink property
+*/

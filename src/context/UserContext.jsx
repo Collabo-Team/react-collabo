@@ -18,4 +18,4 @@ const useUserContext = () => {
   return context;
 };
 
-export { UserProvider, UserContext, useUserContext };
+export { UserProvider, useUserContext };

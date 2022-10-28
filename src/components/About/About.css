@@ -16,7 +16,7 @@
     text-align: center;
 }
 
-.image-wrapper {
+.devCard-wrapper {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
@@ -37,7 +37,7 @@
     height: 175px;
     width: 175px;
     padding: 5px;
-    border-radius: 25%;
+    border-radius: 50%;
 }
 
 .headshot-wrapper {
@@ -53,4 +53,8 @@
 
 .icon {
     margin: 8px;
+}
+
+a {
+    color: inherit;
 }
