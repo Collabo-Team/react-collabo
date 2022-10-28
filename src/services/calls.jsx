@@ -65,11 +65,11 @@ export async function getProjects() {
 // PROFILE FETCH FNS
 
 export async function createProfile(profile) {
-  return await client.from('profiles_og').insert(profile).single();
+  return await client.from('profiles').insert(profile).single();
 }
 
 export async function getProfileById(id) {
-  const response = await client.from('profiles_og').select('*').match({ id }).single();
+  const response = await client.from('profiles').select('*').match({ id }).single();
   if (response.error) {
     throw new Error(response.error.message);
   }
@@ -86,15 +86,15 @@ export async function updateProfile(
   projects,
   url
 ) {
-  const response = await client.from('profiles_og').upsert({
-    user_name: username,
+  const response = await client.from('profiles').upsert({
+    username: username,
     first_name: firstName,
     last_name: lastName,
     email: email,
     bio: bio,
-    location: city,
+    location: location,
     projects: projects,
-    image_file: url,
+    avatar_url: url,
   });
   return checkError(response);
 }

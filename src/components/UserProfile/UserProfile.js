@@ -18,8 +18,8 @@ export default function UserProfile() {
   const [imageFile, setImageFile] = useState('');
 
   const imageRef = useRef(null);
-
-  // const { setProfile, profile } = useProfile();
+  
+  const { setProfile, profile } = useProfile();
 
   const { result, uploader } = useAvatar();
 
@@ -33,6 +33,8 @@ export default function UserProfile() {
       url = await uploadProfileImage(imagePath, imageFile);
     }
     await updateProfile(username, firstName, lastName, email, bio, city, projects, url);
+
+    setProfile(profile);
   };
 
   //! Issue we faced:

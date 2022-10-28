@@ -18,7 +18,6 @@ css for hamburger menu in nav
 
 html {
     font-size: 62.5%;
-    font-family: 'Roboto', sans-serif;
 }
 
 li {
@@ -29,7 +28,7 @@ a {
     text-decoration: none;
 }
 
-.header{
+/* .header{
     border-bottom: 1px solid #E2E8F0;
 }
 
@@ -121,90 +120,135 @@ a {
         -webkit-transform: translateY(-8px) rotate(-45deg);
         transform: translateY(-8px) rotate(-45deg);
     }
-}
+} */
 */
 
 .form-content {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  margin-top: 10%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
 }
 
 .page-header {
-  display: flow-root;
+    display: flow-root;
 }
 
 .logo {
-  font-family: var(--logo-font);
-  font-size: 2.4em;
-  float: left;
-  margin-top: 5px;
+    font-family: var(--logo-font);
+    font-size: 2.4em;
+    float: left;
+    margin-top: 5px;
 }
 
 #logo-img {
-  height: 50px;
-  width: auto;
-  float: right;
+    height: 50px;
+    width: auto;
+    float: right;
 }
 
 #auth-header {
-  font-size: 1.4rem;
-  margin-bottom: 5px;
+    font-size: 1.4rem;
+    margin-bottom: 5px;
+    text-align: center;
 }
 
 #collabo-logo {
-  margin: 0 auto;
+    margin: 0 auto;
 }
 
-.form-content {
-  margin-top: 10%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+/* .form-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10%;
+} */
 
 #auth-form {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  margin: 0 auto;
-  max-width: 500px;
-  border: 1px solid;
-}
-
-#auth-header.title {
-  font-family: var(--main-font);
+    width: 100%;
+    margin: 0 auto;
+    max-width: 400px;
+    border: 1px solid;
+    padding: 20px;
+    display: grid;
+    gap: 20px;
 }
 
 #auth-input,
 button {
-  font-family: var(--main-font);
+    font-family: var(--main-font);
 }
 
 #sign-in-p {
-  font-family: var(--main-font);
+    font-family: var(--main-font);
 }
 
 #sign-in-btn {
-  background-color: rgba(128, 128, 128, 0.377);
-  width: 60%;
-  margin: 20px auto;
-  margin-top: 5%;
-  border-radius: 0.4em;
-  box-shadow: 0px 0px 2px -2px;
+    background-color: rgb(183, 227, 180);
+    margin: auto;
+    margin-top: 5%;
+    border-radius: 0.4em;
+    box-shadow: 0px 0px 2px -2px;
 }
 
 #sign-in-btn:hover {
-  background: linear-gradient(45deg, rgba(86, 149, 137, 1) 45%, rgba(183, 227, 180, 1) 80%);
+    /* background: linear-gradient(45deg, rgba(86, 149, 137, 1) 45%, rgba(183, 227, 180, 1) 80%); */
 }
 
 #sign-in-btn:active {
-  transform: scale(0.98);
+    transform: scale(.98);
 }
 
-footer {
-  visibility: hidden;
+#auth-form label {
+    display: grid;
+    gap: 5px;
+    margin-bottom: -20px;
+}
+
+#auth-form label div {
+    font-family: 'Titillium Web';
+    font-size: 0.9em;
+    font-weight: bold;
+    color: var(--label-color);
+}
+
+#auth-form input,
+#auth-form textarea,
+#auth-form select {
+    width: 100%;
+    font-size: 1em;
+    padding: 10px;
+}
+
+#auth-form button {
+    width: 40%;
+    font-size: 1em;
+}
+
+#auth-form input,
+#auth-form select {
+    height: 30px;
+}
+
+#auth-form input[type='file'] {
+    padding: 0;
+}
+
+
+/* form button:hover {
+    background-color: rgb(183, 227, 180);
+} */
+
+#auth-form form button:disabled {
+    opacity: 0.5;
+}
+
+.error {
+    min-height: 1em;
+    color: red;
+}
+
+.hidden {
+    display: none;
 }

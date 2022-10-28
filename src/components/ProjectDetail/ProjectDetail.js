@@ -43,7 +43,7 @@ export default function ProjectDetail() {
     const playlist = WaveformPlaylist({
       container: document.getElementById('playlist'),
       samplesPerPixel: 1000,
-      waveHeight: 100,
+      waveHeight: 75,
       timescale: true,
       state: 'cursor',
       // seekStyle: 'line',
@@ -51,10 +51,10 @@ export default function ProjectDetail() {
       colors: {
         waveOutlineColor: '#c78283',
       },
-      zoomLevels: [128, 256, 512, 1000],
+      zoomLevels: [128, 256, 512, 1000, 2000],
       controls: {
         show: true,
-        width: 220,
+        width: 200,
       },
     });
 

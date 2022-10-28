@@ -149,9 +149,11 @@
 }
 .playlist .controls label.stereopan:before {
   content: "L";
+  font-family: var(--main-font);
 }
 .playlist .controls label.stereopan:after {
   content: "R";
+  font-family: var(--main-font);
 }
 
 .playlist .playlist-time-scale {

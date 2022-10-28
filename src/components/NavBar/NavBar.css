@@ -37,3 +37,9 @@ nav a {
 .nav-avatar {
     height: 25px;
 }
+
+#sign-out {
+    font-size: 0.5em;
+    background: tomato;
+    padding: 3px;
+}
