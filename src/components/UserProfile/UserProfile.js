@@ -19,7 +19,7 @@ export default function UserProfile() {
 
   const imageRef = useRef(null);
   
-  const { setProfile, profile } = useProfile();
+  // const { setProfile, profile } = useProfile();
 
   const { result, uploader } = useAvatar();
 
