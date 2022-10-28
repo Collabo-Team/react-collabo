@@ -6,16 +6,16 @@ import { signOut } from '../../services/auth';
 import './NavBar.css';
 
 export default function NavBar() {
-  const { setUser } = useUserContext();
+  // const { setUser } = useUserContext();
 
-  const handleSignOut = async () => {
-    try {
-      await signOut();
-      setUser(null);
-    } catch (e) {
-      console.error(e.message);
-    }
-  };
+  // // const handleSignOut = async () => {
+  // //   try {
+  // //     await signOut();
+  // //     setUser(null);
+  // //   } catch (e) {
+  // //     console.error(e.message);
+  // //   }
+  // // };
 
   // ! link user avatar on {line 43} once we set up global state for user profile date
   return (
@@ -31,13 +31,9 @@ export default function NavBar() {
           <NavLink to="/about" className="nav-link">
             About
           </NavLink>
-
-          <NavLink to="/auth/sign-up" onClick={ handleSignOut }>Sign Out</NavLink>
-
           <NavLink to="/auth/sign-in" className="nav-link">
-            Sign in
+            Auth
           </NavLink>
-
           <NavLink to="/user-profile/:id" className="nav-link">
             <img
               src={process.env.PUBLIC_URL + '/avatar-placeholder-circle.png'}
