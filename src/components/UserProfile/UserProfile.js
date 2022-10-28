@@ -1,9 +1,9 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
 import { UserContext } from '../../context/UserContext';
 import { updateProfile, uploadProfileImage } from '../../services/calls';
 import './UserProfile.css';
 import { useRef } from 'react';
-import useProfile from '../../hooks/useProfile';
+// import useProfile from '../../hooks/useProfile';
 import useAvatar from '../../hooks/useAvatar';
 
 export default function UserProfile() {
@@ -19,7 +19,7 @@ export default function UserProfile() {
 
   const imageRef = useRef(null);
 
-  const { setProfile, profile } = useProfile();
+  // const { setProfile, profile } = useProfile();
 
   const { result, uploader } = useAvatar();
 
