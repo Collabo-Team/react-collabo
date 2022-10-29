@@ -1,13 +1,13 @@
-import { useState } from 'react';
-import { useUserContext } from '../../context/UserContext';
+import { useContext, useEffect, useState } from 'react';
+import { UserContext } from '../../context/UserContext';
 import { updateProfile, uploadProfileImage } from '../../services/calls';
 import './UserProfile.css';
 import { useRef } from 'react';
-import { useProfile } from '../../hooks/useProfile';
+import useProfile from '../../hooks/useProfile';
 import useAvatar from '../../hooks/useAvatar';
 
 export default function UserProfile() {
-  const { user } = useUserContext();
+  const { user } = useContext(UserContext);
   const [username, setUsername] = useState('');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -18,9 +18,7 @@ export default function UserProfile() {
   const [imageFile, setImageFile] = useState('');
 
   const imageRef = useRef(null);
-  
   const { setProfile, profile } = useProfile();
-
   const { result, uploader } = useAvatar();
 
   const handleProfile = async (e) => {

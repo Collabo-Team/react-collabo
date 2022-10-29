@@ -1,6 +1,6 @@
-import { useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 import { useState } from 'react';
-import { useUserContext } from '../context/UserContext';
+import { UserContext } from '../context/UserContext';
 
 import { getProfileById } from '../services/calls';
 
@@ -8,7 +8,7 @@ export function useProfile() {
   const [profile, setProfile] = useState({});
   const [loadProfile, setLoadProfile] = useState(true);
   const [error, setError] = useState('');
-  const { user } = useUserContext();
+  const { user } = useContext(UserContext);
 
   //! template for when we set up the profile display component
 
