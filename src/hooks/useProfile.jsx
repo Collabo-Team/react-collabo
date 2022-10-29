@@ -4,7 +4,7 @@ import { UserContext } from '../context/UserContext';
 
 import { getProfileById } from '../services/calls';
 
-export default function useProfile() {
+export function useProfile() {
   const [profile, setProfile] = useState({});
   const [loadProfile, setLoadProfile] = useState(true);
   const [error, setError] = useState('');

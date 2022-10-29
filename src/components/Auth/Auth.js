@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Redirect, Link, useParams } from 'react-router-dom';
 import { useUserContext } from '../../context/UserContext';
-import { authUser, getUser } from '../../services/auth';
+import { authUser } from '../../services/auth';
 import './Auth.css';
 
 export default function Auth() {
@@ -20,6 +20,8 @@ export default function Auth() {
       setAuthError(e.message);
     }
   };
+
+  
 
   if (user) {
     return <Redirect to="/" />;
