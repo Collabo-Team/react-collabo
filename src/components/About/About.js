@@ -43,7 +43,7 @@ export default function About() {
           <br />
           <br />
         </div>
-        
+
         <p className="devCard-wrapper">
           { devs.map((dev, index) => <DevCard key={ index } dev={ dev } />) }
         </p>
@@ -121,8 +121,6 @@ function DevCard({ dev }) {
     </section>
   );
 }
-
-
 /*
 lns 5-33: build array of dev information to display
 lns 39-45: map through array of dev information to display each dev's information in DevCard component as appropriate
