@@ -21,6 +21,10 @@
   object-fit: cover;
 }
 
+#avatar-input {
+  
+}
+
 .hidden {
   display: none;
 }

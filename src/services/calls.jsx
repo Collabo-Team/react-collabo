@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { checkError, client } from './client';
 
 /* Data functions */
@@ -68,23 +69,21 @@ export async function createProfile(profile) {
   return await client.from('profiles').insert(profile).single();
 }
 
-export async function getProfileById(id) {
-  const response = await client.from('profiles').select('*').match({ id }).single();
-  if (response.error) {
-    throw new Error(response.error.message);
-  }
-  return response.data;
+export async function getProfileById(uuid) {
+  const response = await client.from('profiles').select('*').match({ uuid }).single();
+  // if (response.error) {
+  //   throw new Error(response.error.message);
+  // }
+  // return response.data;
+  return checkError(response);
 }
 
-export async function updateProfile(
-  username,
-  firstName,
-  lastName,
-  bio,
-  city,
-  projects,
-  url
-) {
+export async function getProfiles() {
+  const response = await client.from('profiles').select('*');
+  return checkError(response);
+}
+
+export async function updateProfile(username, firstName, lastName, bio, city, projects, url) {
   const response = await client.from('profiles').upsert({
     username: username,
     first_name: firstName,

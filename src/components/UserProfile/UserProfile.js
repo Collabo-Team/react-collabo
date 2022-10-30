@@ -16,11 +16,12 @@ export default function UserProfile() {
   const [city, setCity] = useState('');
   const [projects, setProjects] = useState('');
   const [imageFile, setImageFile] = useState('');
+  const [profile, setProfile] = useState();
 
   const imageRef = useRef(null);
-  const { setProfile, profile } = useUserContext();
   const { result, uploader } = useAvatar();
-  const history = useHistory();
+  const { userProfile } = useProfile();
+  // const history = useHistory();
 
   async function handleProfile(e) {
     e.preventDefault();
@@ -32,12 +33,14 @@ export default function UserProfile() {
       url = await uploadProfileImage(imagePath, imageFile);
     }
     await updateProfile(username, firstName, lastName, bio, city, projects, url);
-    console.log('profile', profile);
-    console.log('user', user);
+    
 
-    setProfile(profile);
-    history.push('/profile-display/:id');
+
+    setProfile(userProfile);
+    // history.push('/profile-display/:id');
   }
+
+
 
   //! Issue we faced:
   //* Needed to route to user signup to create a new account before I can then go into profile page to update
