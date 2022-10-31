@@ -6,7 +6,7 @@ import UserProfile from './components/UserProfile/UserProfile';
 import StartProject from './components/StartProject/StartProject';
 import Home from './components/Home/Home';
 import NavBar from './components/NavBar/NavBar';
-import ProjectDetail from './components/ProjectDetail/ProjectDetail';
+// import ProjectDetail from './components/ProjectDetail/ProjectDetail';
 
 function App() {
   return (
@@ -22,12 +22,12 @@ function App() {
         <Route path="/user-profile/:id">
           <UserProfile/>
         </Route>
-        <Route path="/start-project/:id">
+        <Route path="/start-project">
           <StartProject/>
         </Route>
-        <Route path="/projects/:id">
+        {/* <Route path="/projects/:id">
           <ProjectDetail/>
-        </Route>
+        </Route> */}
         <Route exact path="/">
           <Home/>
         </Route>
