@@ -11,14 +11,14 @@ export default function StartProject() {
   // const [timeSignature, setTimeSignature] = useState('');
   // const [key, setKey] = useState('');
 
-  const [project, setProject] = useState({ name: '', genre: '', tempo: '', timeSignature: '', key: '' });
+  const [project, setProject] = useState({ name: '', genre: 'Rock', tempo: '120', timeSignature: '4/4', key: 'C major' });
 
   console.log('project', project);
+
   // if (!user) {
   //   return <Redirect to="/auth" />;
   // }
 
-// need to change the supabase function to accept multiple parameters, or figure out how to pass in an entire project object
   const handleStartProject = async () => {
     await newProject(project);
   };
@@ -27,9 +27,9 @@ export default function StartProject() {
     <>
       <form onSubmit={handleStartProject}>
         <label>Project Name</label>
-        <input value={project.name} onChange={(e) => setProject((prevState) => ({ ...prevState, name: e.target.value }))} />
+        <input placeholder='My Cool New Tune' value={project.name} onChange={(e) => setProject((prevState) => ({ ...prevState, name: e.target.value }))} />
         <label>Project Genre:
-          <select value={project.genre} onChange={(e) => setProject(e.target.value)} required >
+          <select value={project.genre} onChange={(e) => setProject((prevState) => ({ ...prevState, genre: e.target.value }))} required >
             <option>Rock</option>
             <option>Hip Hop</option>
             <option>Pop</option>
@@ -56,11 +56,11 @@ export default function StartProject() {
           </select>
         </label>
         <label>Tempo</label>
-        <input value={project.tempo} onChange={(e) => setProject.tempo(e.target.value)} />
+        <input value={project.tempo} onChange={(e) => setProject.tempo((prevState) => ({ ...prevState, tempo: e.target.value }))} />
         <label>Project Time Signature:
-          <select value={project.timeSignature} onChange={(e) => setProject.timeSignature(e.target.value)} required>
+          <select value={project.timeSignature} onChange={(e) => setProject((prevState) => ({ ...prevState, timeSignature: e.target.value }))} required>
             <option>3/4</option>
-            <option selected>4/4</option>
+            <option>4/4</option>
             <option>5/4</option>
             <option>6/8</option>
             <option>7/8</option>
@@ -71,37 +71,41 @@ export default function StartProject() {
           </select>
         </label>
         <label> Project Key:
-          <select value={project.key} onChange={(e) => setProject.key(e.target.value)} required>
-            <option>B major</option>
-            <option>B&#9837; major</option>
-            <option>A major</option>
-            <option>A&#9837; major</option>
-            <option>G major</option>
-            <option>G&#9837; major</option>
-            <option>F&#9839; major</option>
-            <option>F major</option>
-            <option>E major</option>
-            <option>E&#9837; major</option>
-            <option>D major</option>
-            <option>D&#9837; major</option>
-            <option>C&#9839; major</option>
-            <option selected>C major</option>
+          <select value={project.key} onChange={(e) => setProject((prevState) => ({ ...prevState, key: e.target.value }))} required>
+            <optgroup label='Major Keys'>
+              <option>B major</option>
+              <option>B&#9837; major</option>
+              <option>A major</option>
+              <option>A&#9837; major</option>
+              <option>G major</option>
+              <option>G&#9837; major</option>
+              <option>F&#9839; major</option>
+              <option>F major</option>
+              <option>E major</option>
+              <option>E&#9837; major</option>
+              <option>D major</option>
+              <option>D&#9837; major</option>
+              <option>C&#9839; major</option>
+              <option>C major</option>
+            </optgroup>
             <option disabled>───────</option>
-            <option>B minor</option>
-            <option>B&#9837; minor</option>
-            <option>A&#9839; minor</option>
-            <option>A minor</option>
-            <option>A&#9837; minor</option>
-            <option>G&#9839; minor</option>
-            <option>G minor</option>
-            <option>F&#9839; minor</option>
-            <option>F minor</option>
-            <option>E minor</option>
-            <option>E&#9837; minor</option>
-            <option>D&#9839; minor</option>
-            <option>D minor</option>
-            <option>C&#9839; minor</option>
-            <option>C minor</option>
+            <optgroup label='Minor Keys'>
+              <option>B minor</option>
+              <option>B&#9837; minor</option>
+              <option>A&#9839; minor</option>
+              <option>A minor</option>
+              <option>A&#9837; minor</option>
+              <option>G&#9839; minor</option>
+              <option>G minor</option>
+              <option>F&#9839; minor</option>
+              <option>F minor</option>
+              <option>E minor</option>
+              <option>E&#9837; minor</option>
+              <option>D&#9839; minor</option>
+              <option>D minor</option>
+              <option>C&#9839; minor</option>
+              <option>C minor</option>
+            </optgroup>
           </select>
         </label>
         <button>Start Project</button>
