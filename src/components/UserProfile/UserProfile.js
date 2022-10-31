@@ -24,6 +24,7 @@ export default function UserProfile() {
   // const history = useHistory();
 
   async function handleProfile(e) {
+    const profileForm = document.querySelector('#profile-form');
     e.preventDefault();
     let url = null;
     if (imageFile.name) {
@@ -33,14 +34,29 @@ export default function UserProfile() {
       url = await uploadProfileImage(imagePath, imageFile);
     }
     await updateProfile(username, firstName, lastName, bio, city, projects, url);
-    
-
 
     setProfile(userProfile);
+
+    // setUsername('');
+    // setFirstName('');
+    // setLastName('');
+    // setBio('');
+    // setCity('');
+    // setProjects('');
+    // setImageFile('');
+    resetForm();
     // history.push('/profile-display/:id');
   }
 
-
+  const resetForm = () => {
+    setUsername('');
+    setFirstName('');
+    setLastName('');
+    setBio('');
+    setCity('');
+    setProjects('');
+    setImageFile('');
+  };
 
   //! Issue we faced:
   //* Needed to route to user signup to create a new account before I can then go into profile page to update
