@@ -5,13 +5,9 @@ import { newProject } from '../../services/calls';
 
 export default function StartProject() {
   const { user } = useUserContext();
-  // const [projectName, setProjectName] = useState('');
-  // const [genre, setGenre] = useState('');
-  // const [tempo, setTempo] = useState('');
-  // const [timeSignature, setTimeSignature] = useState('');
-  // const [key, setKey] = useState('');
 
-  const [project, setProject] = useState({ name: '', genre: 'Rock', tempo: '120', timeSignature: '4/4', key: 'C major' });
+
+  const [project, setProject] = useState({ name: '', genre: 'Rock', tempo: '120', time_signature: '4/4', musical_key: 'C major' });
 
   console.log('project', project);
 
@@ -22,12 +18,12 @@ export default function StartProject() {
   const handleStartProject = async () => {
     await newProject(project);
   };
-
+  
   return (
     <>
       <form onSubmit={handleStartProject}>
         <label>Project Name</label>
-        <input placeholder='My Cool New Tune' value={project.name} onChange={(e) => setProject((prevState) => ({ ...prevState, name: e.target.value }))} />
+        <input placeholder='New Project' value={project.name} onChange={(e) => setProject((prevState) => ({ ...prevState, name: e.target.value }))} />
         <label>Project Genre:
           <select value={project.genre} onChange={(e) => setProject((prevState) => ({ ...prevState, genre: e.target.value }))} required >
             <option>Rock</option>
@@ -56,9 +52,9 @@ export default function StartProject() {
           </select>
         </label>
         <label>Tempo</label>
-        <input value={project.tempo} onChange={(e) => setProject.tempo((prevState) => ({ ...prevState, tempo: e.target.value }))} />
+        <input value={project.tempo} onChange={(e) => setProject((prevState) => ({ ...prevState, tempo: e.target.value }))} />
         <label>Project Time Signature:
-          <select value={project.timeSignature} onChange={(e) => setProject((prevState) => ({ ...prevState, timeSignature: e.target.value }))} required>
+          <select value={project.time_signature} onChange={(e) => setProject((prevState) => ({ ...prevState, time_signature: e.target.value }))} required>
             <option>3/4</option>
             <option>4/4</option>
             <option>5/4</option>
@@ -71,7 +67,7 @@ export default function StartProject() {
           </select>
         </label>
         <label> Project Key:
-          <select value={project.key} onChange={(e) => setProject((prevState) => ({ ...prevState, key: e.target.value }))} required>
+          <select value={project.musical_key} onChange={(e) => setProject((prevState) => ({ ...prevState, musical_key: e.target.value }))} required>
             <optgroup label='Major Keys'>
               <option>B major</option>
               <option>B&#9837; major</option>
